@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+<router-view></router-view>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    // 准备组件
+    let first={
+        template:
+            `
+            <div>
+            子组件first
+            <router-link to="/second/1/tom">查看second</router-link>
+            </div>
+            `
+    }
+    let second={
+        template:
+            `
+            <div>子组件second
+            id {{$route.params.id}}
+            <br>
+            name{{$route.params.name}}
+            </div>
+            `
+    }
+
+    let myRouter= new VueRouter({
+        routes:[
+            {path:'/first',component:first},
+            {path:'/second/:id/:name',component:second},
+            {path:'/',redirect: "first"}
+            //注意区分 组件是没有引号，而redirect是有引号的
+            // 注意path路径中的写发
+        ]
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router:myRouter
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <router-view></router-view>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    let first = {
+        template: `
+        <div>子组件组件first
+            <router-link to="/second?id=1&name=yan">查看second</router-link>
+            <br>
+            id {{$route.query.id}} name{{$route.query.name}}
+
+        </div>
+        `
+    }
+
+    let second = {
+        template: `
+            <div>
+                子组件组件second
+            <router-link to="/first?id=2&name=lu">查看first</router-link>
+            <br>
+            id {{$route.query.id}} name{{$route.query.name}}
+            </div>
+            `
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: "/first", component: first},
+            {path: "/second", component: second},
+            {path: '/', redirect: '/first'},
+        ]
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router: myRouter
+    })
+</script>
+
+</body>
+</html>

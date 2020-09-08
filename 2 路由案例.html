@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <router-link to="/index">首页</router-link>
+    <router-link to="/user">用户</router-link>
+    <br>
+
+    <router-view></router-view>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    // 1 准备组件
+    let first = {
+        template: `<div>我是子组件first
+<h3>欢迎访问信息管理系统</h3>
+</div>`
+    }
+
+    let second = {
+        template: `
+            <div>
+                我是子组件second
+                <table border="1">
+                    <tr>
+                        <td>ID</td>
+                        <td>姓名</td>
+                        <td>生日</td>
+                    </tr>
+
+                    <tr v-for="second in users" :key="second.id">
+                    <td>{{second.id}}</td>
+                    <td>{{second.username}}</td>
+                    <td>{{second.bri}}</td>
+                    </tr>
+                </table>
+            </div>`,
+        // <tr v-for="second in users" :key="second.id">这里面的second是子组件的名称
+        data: function () {
+            return {
+                users: [
+                    {id: 1, username: '小黄', bri: 2010},
+                    {id: 1, username: '小白', bri: 2011},
+                ]
+            }
+        }
+    }
+
+    //2 定义路由
+    let myRouter = new VueRouter({
+        routes: [
+            {path: "/index", component: first},
+            {path: "/user", component: second}
+        ],
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router:myRouter,
+    })
+</script>
+
+</body>
+</html>

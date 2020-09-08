@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由的使用</title>
+</head>
+<body>
+
+<div id="app">
+    <span>这是主页的页头</span>
+    <!-- 定义用户发起放访问不同组件的链接  通过to="/路由地址"来指定当前标签要访问的组件 -->
+    <router-link to="/index">访问系统首页</router-link>
+    <router-link to="/stu">访问用户页</router-link>
+    <br>
+    <hr>
+    <router-view></router-view>
+</div>
+
+<script src="js/vue.min.js"></script>
+<!--路由是单独的模块，额外引入路由依赖  必须放在vue之后不呢个放在vue前面-->
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    //  组件1
+    let first = {
+        template: `<div>我是首页子组件first</div>`
+    }
+
+    //组件2
+    let second = {
+        template:`<div>我是子组件second</div>`
+    }
+
+    // 为每个组件准备对应的路由 ，定义组件与路由的映射关系
+    // 页面中输入路由显示对应的组件
+    // 需要将定义好的路由注入到当前的vue实例中
+
+    let myRouter = new VueRouter({
+        routes: [
+            //path 指的是访问组件的地址 component指的是这个地址对应的组件
+            {path: "/index", component: first},
+            {path: "/stu", component: second}
+        ]
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        //定义好的路由注入到实例中
+        router: myRouter,
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    let local = localStorage;
+    // local.number = 24; // 数字
+    // localStorage.name = "小黄";
+    // console.log(typeof local.number);
+    // console.log(typeof local.name);
+
+    // localStorage 会将所有的数据作为字符串去储存
+
+    let student2 = {
+        id: 2,
+        username: "小白",
+        age: 18,
+    }
+    // 储存对象类型的数据，需要将数据进行序列化
+    local.stu = JSON.stringify(student2);
+
+    // 取出数据 反序列成对象
+    let stu2 = JSON.parse(local.stu);
+    console.log(stu2.username)
+
+</script>
+
+</body>
+</html>

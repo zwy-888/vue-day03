@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<router-view></router-view>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    let first={
+        template:`
+            <div>子组件first
+                <button @click="goPage">跳转到用户界面</button>
+            </div>`,
+        methods: {
+            goPage(){
+                this.$router.push({path:"/second/tom"})
+            }
+        }
+    }
+    let second={
+        template:
+            `<div>子组件second
+                id {{$route.params.id}}
+                <button @click="goBack">返回上一页</button>
+            </div>
+            `,
+        methods: {
+            // 返回上一页的页面
+            goBack(){
+                this.$router.go(-1);
+                // this.$router.push("/");
+            },
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/first', component: first},
+            {path: '/second/:id', component: second},
+            {path: '/', redirect: '/first'},
+        ]
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router: myRouter
+    })
+</script>
+
+</body>
+</html>

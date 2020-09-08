@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+  //localStorage都是以键值对的形式存储的，存在这里会以文本形式存储到硬盘，关闭页面不会丢失，
+    //需要用户主动删除
+  //三种存储方式
+    localStorage.name= '111'
+    localStorage['age'] = 12;
+    localStorage.setItem("pwd","111")
+    //获取
+    let name = localStorage.name
+    let age =localStorage["age"]
+    let pwd = localStorage.getItem("pwd")
+    //遍历
+    for(let n = 0; n<localStorage;n++){
+        console.log("第" + n + "条数据key为" + localStorage.key(n) + ",value为" + localStorage.getItem(localStorage.key(n)))
+    }
+    //删除所有
+        localStorage.clear();
+    //sessionStorage 在使用上与他一致
+</script>
+
+</body>
+</html>
