@@ -45,11 +45,14 @@
             },
 
             delAll(){
-                // localStorage.clear();
+                localStorage.clear()
                 this.msg_list =[]
             },
             delNote(index){
                 this.msg_list.splice(index, 1)
+                // localStorage.removeItem("msgs")
+                //重新从this.msg_list里面赋值给localStorage.msgs
+                localStorage.msgs = JSON.stringify(this.msg_list)
             }
         }
     })
